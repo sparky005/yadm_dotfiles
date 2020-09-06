@@ -8,6 +8,7 @@ module.exports = {
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
     updateChannel: 'stable',
+    scrollback: 10000000,
 
     // default font size in pixels for all tabs
     fontSize: 14,
@@ -150,6 +151,7 @@ module.exports = {
   plugins: [
   "rainglow",
   "hyperterm-bold-tab",
+  "hyper-search",
   ],
 
   // in development, you can create a directory under
