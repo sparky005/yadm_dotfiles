@@ -78,8 +78,14 @@ echo "done!"
 # this command assumes we already have dotfiles correctly installed
 # TODO: nvim configuration instead of vanilla vim
 if command -v vim >/dev/null 2>&1; then
-  echo "Bootstraping Vim"
+  echo "Bootstrapping Vim"
   vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+  echo "done!"
+fi
+
+if command -v nvim >/dev/null 2>&1; then
+  echo "Bootstrapping neovim"
+  nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
   echo "done!"
 fi
 
