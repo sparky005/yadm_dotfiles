@@ -1,2 +1,74 @@
 #!/usr/bin/env bash
-echo "SUP"
+# A WIP installer script
+# some ideas from https://www.codyhiar.com/snippets/mac-setup-script
+# TODO: oh-my-zsh install and setup
+# TODO: cloning dotfiles (and actually setting up a dotfiles repo for new dotfiles for mac
+# TODO: move existing installs to brew installs (check evernote apps installed on mac note)
+# TODO: asdf setup
+# TODO: can use this script as the argument to yadm bootstrap to install shit
+# TODO: or does this script install and clone yadm to set up the dot files? chicken and egg problem!
+
+# probably i will just use a smaller, minimal script to install brew, yadm, and clone the dotfiles
+# and then call this script as bootstrap
+
+# Check for Homebrew,
+# Install if we don't have it
+if test ! $(which brew); then
+  echo "Installing homebrew..."
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+brew doctor
+brew update
+
+binaries=(
+    asdf
+    bat
+    cocoapods
+    gatsby-cli
+    grep
+    htop
+    johanhaleby/kubetail/kubetail
+    minikube
+    neovim
+    netlify-cli
+    thefuck
+    tree
+    typescript
+    watch
+    wget
+    youtube-dl
+)
+echo "installing binaries..."
+brew install ${binaries[@]}
+echo "done!"
+
+apps=(
+    alt-tab
+    anki
+    docker
+    hyper
+    xact
+    android-studio
+    background-music
+    google-cloud-sdk
+    steam
+    firefox
+    spotify
+    dropbox
+    iterm2
+    slack
+    swinsian
+    visual-studio-code
+)
+
+echo "installing apps..."
+brew cask install ${apps[@]}
+echo "done!"
+
+# this command assumes we already have dotfiles correctly installed
+# TODO: nvim configuration instead of vanilla vim
+if command -v vim >/dev/null 2>&1; then
+  echo "Bootstraping Vim"
+  vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+fi
