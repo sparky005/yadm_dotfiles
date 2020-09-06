@@ -7,7 +7,7 @@
 # TODO: asdf setup
 # TODO: can use this script as the argument to yadm bootstrap to install shit
 # TODO: or does this script install and clone yadm to set up the dot files? chicken and egg problem!
-# TODO: install todoist from app store
+# TODO: install todoist and befocused from app store
 
 # probably i will just use a smaller, minimal script to install brew, yadm, and clone the dotfiles
 # and then call this script as bootstrap
@@ -23,48 +23,52 @@ brew doctor
 brew update
 
 binaries=(
-    asdf
-    bat
-    cocoapods
-    gatsby-cli
-    grep
-    htop
-    johanhaleby/kubetail/kubetail
-    minikube
-    neovim
-    netlify-cli
-    thefuck
-    tree
-    typescript
-    watch
-    wget
-    youtube-dl
+  asdf
+  bat
+  cocoapods
+  gatsby-cli
+  grep
+  htop
+  johanhaleby/kubetail/kubetail
+  minikube
+  neovim
+  netlify-cli
+  thefuck
+  tree
+  typescript
+  watch
+  wget
+  youtube-dl
 )
 echo "installing binaries..."
 brew install ${binaries[@]}
 echo "done!"
 
 apps=(
-    alt-tab
-    anki
-    docker
-    hyper
-    xact
-    android-studio
-    background-music
-    google-cloud-sdk
-    steam
-    spotify
-    firefox
-    dropbox
-    iterm2
-    slack
-    swinsian
-    visual-studio-code
-    rectangle
-    slack
-    evernote
-    zoom
+  alt-tab
+  anki
+  docker
+  hyper
+  xact
+  android-studio
+  background-music
+  google-cloud-sdk
+  steam
+  spotify
+  firefox
+  dropbox
+  iterm2
+  slack
+  swinsian
+  visual-studio-code
+  rectangle
+  evernote
+  # zoom
+  google-chrome
+  whatsapp
+  signal
+  # audacity
+  # ableton
 )
 
 echo "installing apps..."
@@ -78,3 +82,7 @@ if command -v vim >/dev/null 2>&1; then
   vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
   echo "done!"
 fi
+
+# disable accents on long keypresses
+# more info: https://apple.stackexchange.com/questions/332769/macos-disable-popup-showing-accented-characters-when-holding-down-a-key
+defaults write -g ApplePressAndHoldEnabled -bool false
