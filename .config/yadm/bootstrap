@@ -7,6 +7,7 @@
 # TODO: asdf setup
 # TODO: can use this script as the argument to yadm bootstrap to install shit
 # TODO: or does this script install and clone yadm to set up the dot files? chicken and egg problem!
+# TODO: install todoist from app store
 
 # probably i will just use a smaller, minimal script to install brew, yadm, and clone the dotfiles
 # and then call this script as bootstrap
@@ -60,6 +61,10 @@ apps=(
     slack
     swinsian
     visual-studio-code
+    rectangle
+    slack
+    evernote
+    zoom
 )
 
 echo "installing apps..."
