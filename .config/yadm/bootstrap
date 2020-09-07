@@ -1,21 +1,27 @@
 #!/usr/bin/env bash
 # A WIP installer script
 # some ideas from https://www.codyhiar.com/snippets/mac-setup-script
-# TODO: oh-my-zsh install and setup
 # TODO: unify .zshrcs from work and here
 # TODO: install todoist and befocused from app store
 
+# TODO: smaller script that pulls yadm and calls this script
+# TODO: can i set my wallpaper?
 # probably i will just use a smaller, minimal script to install brew, yadm, and clone the dotfiles
 # and then call this script as bootstrap
+
+# install OMZ
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
 
 # Check for Homebrew,
 # Install if we don't have it
 if test ! $(which brew); then
   echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+else
+  echo "Homebrew already installed"
 fi
 
-brew doctor
+#brew doctor
 brew update
 
 binaries=(
@@ -42,34 +48,52 @@ echo "done!"
 
 apps=(
   alt-tab
-  anki
   docker
   hyper
-  xact
-  android-studio
-  background-music
-  google-cloud-sdk
-  steam
   spotify
   firefox
-  dropbox
   iterm2
   slack
-  swinsian
   visual-studio-code
   rectangle
   evernote
   # zoom
   google-chrome
+)
+
+extra_apps=(
+  anki
+  xact
   whatsapp
   signal
+  swinsian
+  dropbox
+  android-studio
+  background-music
+  google-cloud-sdk
+  steam
   # audacity
   # ableton
 )
 
-echo "installing apps..."
+
+echo "installing essential apps..."
 brew cask install ${apps[@]}
 echo "done!"
+# https://stackoverflow.com/questions/226703/how-do-i-prompt-for-yes-no-cancel-input-in-a-linux-shell-script for prompt info
+echo "do you want to install extras? you probably only want this on your home machine, not your work machine"
+echo -e "extras:\n    ${extra_apps[*]}"
+select yn in Yes No; do
+  case $yn in
+    Yes)
+      brew cask install ${apps[@]}
+      break
+      ;;
+    No)
+      break
+      ;;
+  esac
+done
 
 asdf_plugins=(
   flutter
@@ -87,21 +111,22 @@ echo "installing all tool versions from .tool-versions"
 asdf install
 echo "done!"
 
-echo "install pynvim. required for deoplete."
-pip3 install pynvim
-echo "done!"
-
-# this command assumes we already have dotfiles correctly installed
-# TODO: nvim configuration instead of vanilla vim
-if command -v vim >/dev/null 2>&1; then
-  echo "Bootstrapping Vim"
-  vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+if [ ! -d ~/nvim_env ]; then
+  echo "set up poetry-managed virtualenv for pynvim and jedi"
+  poetry new ~/nvim_env; cd ~/nvim_env; poetry add pynvim; poetry add jedi; cd -
   echo "done!"
+else
+  echo "neovim virtualenv already set up"
 fi
 
+
 if command -v nvim >/dev/null 2>&1; then
-  echo "Bootstrapping neovim"
+  echo "Bootstrapping Neovim"
   nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+  echo "done!"
+else
+  echo "Bootstrapping Vim"
+  vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
   echo "done!"
 fi
 

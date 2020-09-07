@@ -22,6 +22,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" esc should exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 " install vim-plug if not installed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -36,4 +39,30 @@ Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 " fallback for any other syntaxes i may not use frequently
 Plug 'sheerun/vim-polyglot'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 call plug#end()
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+set splitbelow " move preview pane to bottom
+" sets python3_host_prog to virtualenv specifically for nvim
+" this virtualenv should have been created by yadm bootstrap
+let g:python3_host_prog = system('cd ~/nvim_env; echo -n $(poetry env info -p)/bin/python')
+" change deoplete key to tab
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" hide panel when done inserting
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+
+" show docs for jedi and ternjs
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#jedi#show_docstring = 1
