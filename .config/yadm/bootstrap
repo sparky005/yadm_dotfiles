@@ -2,11 +2,7 @@
 # A WIP installer script
 # some ideas from https://www.codyhiar.com/snippets/mac-setup-script
 # TODO: oh-my-zsh install and setup
-# TODO: cloning dotfiles (and actually setting up a dotfiles repo for new dotfiles for mac
-# TODO: move existing installs to brew installs (check evernote apps installed on mac note)
-# TODO: asdf setup
-# TODO: can use this script as the argument to yadm bootstrap to install shit
-# TODO: or does this script install and clone yadm to set up the dot files? chicken and egg problem!
+# TODO: unify .zshrcs from work and here
 # TODO: install todoist and befocused from app store
 
 # probably i will just use a smaller, minimal script to install brew, yadm, and clone the dotfiles
@@ -73,6 +69,26 @@ apps=(
 
 echo "installing apps..."
 brew cask install ${apps[@]}
+echo "done!"
+
+asdf_plugins=(
+  flutter
+  golang
+  poetry
+  python
+)
+
+echo "installing asdf plugins"
+for plugin in "${asdf_plugins[@]}"; do
+  asdf plugin add $plugin
+done
+echo "done!"
+echo "installing all tool versions from .tool-versions"
+asdf install
+echo "done!"
+
+echo "install pynvim. required for deoplete."
+pip3 install pynvim
 echo "done!"
 
 # this command assumes we already have dotfiles correctly installed
