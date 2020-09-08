@@ -99,3 +99,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval $(thefuck --alias ohno)
 source /Users/asadik/.zshrc.pre-oh-my-zsh
+[ -f .zshrc.better ] && source .zshrc.better
