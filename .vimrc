@@ -51,6 +51,7 @@ else
 endif
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " deoplete
@@ -69,3 +70,7 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " show docs for jedi and ternjs
 let g:deoplete#sources#ternjs#docs = 1
 let g:deoplete#sources#jedi#show_docstring = 1
+
+" terraform config
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
