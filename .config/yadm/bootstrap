@@ -113,6 +113,7 @@ echo "done!"
 
 if [ ! -d ~/nvim_env ]; then
   echo "set up poetry-managed virtualenv for pynvim and jedi"
+  echo "required for deoplete and neovim"
   poetry new ~/nvim_env; cd ~/nvim_env; poetry add pynvim; poetry add jedi; cd -
   echo "done!"
 else

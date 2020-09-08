@@ -1,4 +1,5 @@
 " basic configuration settings
+" a lot of these get set with vim-sensible
 set nocompatible " Improved
 filetype plugin indent on
 set hidden "allow hidden buffers
@@ -35,6 +36,8 @@ endif
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'ctrlpvim/ctrlp.vim'
+" an alternative to ctrlp is fzf, worth considering if i ever get sick of
+" ctrlp
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 " fallback for any other syntaxes i may not use frequently
