@@ -1,7 +1,6 @@
 " basic configuration settings
 " a lot of these get set with vim-sensible
-set nocompatible " Improved
-filetype plugin indent on
+filetype plugin indent on " default in nvim
 set hidden "allow hidden buffers
 set autoread
 " syntax highlighting
