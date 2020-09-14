@@ -51,6 +51,8 @@ endif
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'hashivim/vim-terraform'
+" Improved motion in Vim
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 " deoplete
