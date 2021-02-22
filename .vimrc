@@ -56,6 +56,8 @@ Plug 'easymotion/vim-easymotion'
 " better buffer management with leader-b
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " deoplete

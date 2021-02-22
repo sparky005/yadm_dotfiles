@@ -68,7 +68,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl minikube z thefuck npm terraform)
+plugins=(git kubectl minikube z thefuck npm terraform direnv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,3 +100,6 @@ source $ZSH/oh-my-zsh.sh
 eval $(thefuck --alias ohno)
 source /Users/asadik/.zshrc.pre-oh-my-zsh
 [ -f .zshrc.better ] && source .zshrc.better
+export GOPATH=~/go
+export PATH=~/go/bin:$PATH
+export EDITOR=nvim
