@@ -28,6 +28,7 @@ binaries=(
   asdf
   bat
   cocoapods
+  fzf
   gatsby-cli
   grep
   htop
@@ -49,6 +50,7 @@ echo "done!"
 apps=(
   alt-tab
   docker
+  eqmac
   hyper
   spotify
   firefox
@@ -62,6 +64,7 @@ apps=(
 )
 
 extra_apps=(
+  adobe-digital-editions
   anki
   xact
   whatsapp
