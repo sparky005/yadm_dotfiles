@@ -53,6 +53,11 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'hashivim/vim-terraform'
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
+" better buffer management with leader-b
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " deoplete
@@ -75,3 +80,9 @@ let g:deoplete#sources#jedi#show_docstring = 1
 " terraform config
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
+
+" buffergator
+let g:buffergator_viewport_split_policy = "B"
+let g:buffergator_hsplit_size = 5
+let g:buffergator_autodismiss_on_select = 0
+let g:buffergator_autoupdate = 1

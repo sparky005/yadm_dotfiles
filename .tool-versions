@@ -1,4 +1,4 @@
 flutter 1.20.1-stable
 poetry 1.0.10
 python 3.8.5
-terraform 0.12.29
+terraform 0.13.6
