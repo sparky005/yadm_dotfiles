@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/asadik/.oh-my-zsh"
 
@@ -68,7 +69,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl minikube z thefuck npm terraform direnv)
+plugins=(git kubectl minikube z thefuck npm terraform direnv asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,8 +99,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval $(thefuck --alias ohno)
-source /Users/asadik/.zshrc.pre-oh-my-zsh
+
 [ -f .zshrc.better ] && source .zshrc.better
 export GOPATH=~/go
 export PATH=~/go/bin:$PATH
 export EDITOR=nvim
+#zprof
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

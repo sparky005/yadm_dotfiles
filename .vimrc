@@ -37,6 +37,9 @@ Plug 'tpope/vim-sensible'
 Plug 'ctrlpvim/ctrlp.vim'
 " an alternative to ctrlp is fzf, worth considering if i ever get sick of
 " ctrlp
+" let's try fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 " fallback for any other syntaxes i may not use frequently
@@ -58,6 +61,8 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'ruanyl/vim-gh-line'
+Plug 'tsandall/vim-rego'
 call plug#end()
 
 " deoplete
@@ -71,6 +76,8 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " hide panel when done inserting
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" fix for https://github.com/carlitux/deoplete-ternjs/issues/88
+call deoplete#custom#option('num_processes', 4)
 
 
 " show docs for jedi and ternjs
@@ -86,3 +93,14 @@ let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_hsplit_size = 5
 let g:buffergator_autodismiss_on_select = 0
 let g:buffergator_autoupdate = 1
+
+" vim-gh-line
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+
+let g:ctrlp_max_files=0 " no limit
+let g:ctrlp_clear_cache_on_exit = 0 " keep cache between runs
+" use ripgrep for ctrlp
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
